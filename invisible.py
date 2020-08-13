@@ -27,7 +27,7 @@ while (capture_video.isOpened()):
 	img = np.flip(img , axis=1)
 
 	hsv = cv2.cvtColor(img , cv2.COLOR_BGR2HSV)
-
+# range for black color cloth
 	lower_red = np.array([60,70,0])
 	upper_red = np.array([170, 255, 110])
 	mask1 = cv2.inRange(hsv,lower_red,upper_red)
@@ -37,7 +37,7 @@ while (capture_video.isOpened()):
 	mask2 = cv2.inRange(hsv,lower_red,upper_red)
 
 	mask1 = mask1+mask2
-
+# detecting black color
 
 	mask1 = cv2.morphologyEx(mask1, cv2.MORPH_OPEN, np.ones((3,3),np.uint8),iterations=2)
 	mask1 = cv2.dilate(mask1,np.ones((3,3),np.uint8),iterations = 1)
